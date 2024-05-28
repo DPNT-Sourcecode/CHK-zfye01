@@ -30,12 +30,18 @@ public class CheckoutSolutionTest {
 
     @Test
     public void returnsCorrectBasketPrice() {
+        assertThat(checkout.checkout("AABCD"), equalTo(165));
         assertThat(checkout.checkout("AAABBCD"), equalTo(210));
     }
 
     @Test
     public void handlesLowercaseBasket() {
         assertThat(checkout.checkout("aaabbcd"), equalTo(checkout.checkout("AAABBCD")));
+    }
+
+    @Test
+    public void handlesWhitespaceBasket() {
+        assertThat(checkout.checkout("A B C D"), equalTo(checkout.checkout("ABCD")));
     }
 
     @Test
@@ -49,5 +55,3 @@ public class CheckoutSolutionTest {
     }
     
 }
-
-

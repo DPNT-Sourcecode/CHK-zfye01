@@ -8,7 +8,8 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         // Preprocessing
         String fixedSkus = skus.toUpperCase(); // set all to uppercase
-        fixedSkus.replaceAll("\\s", ""); // remove whitespace
+        fixedSkus = fixedSkus.replaceAll("\\s", ""); // remove whitespace
+        System.out.println(fixedSkus);
 
         // Count the items
         int[] itemCounts;
@@ -70,7 +71,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
