@@ -88,8 +88,9 @@ public class CheckoutSolutionTest {
     public void returnsCorrectGroupDiscountPricesBasedOnPriority() {
         assertThat(checkout.checkout("ZZZS"), equalTo(65));
         assertThat(checkout.checkout("ZZZT"), equalTo(65));
-        assertThat(checkout.checkout("ZZZX"), equalTo(65));
+        assertThat(checkout.checkout("ZZZX"), equalTo(62));
         assertThat(checkout.checkout("ZZZY"), equalTo(65));
+        assertThat(checkout.checkout("XXXZ"), equalTo(62));
     }
 
     @Test
@@ -98,7 +99,7 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("AAABBCD"), equalTo(210));
         assertThat(checkout.checkout("AAAAAABBCDEE"), equalTo(395));
         assertThat(checkout.checkout("AAAAAABBCDEEFFFF"), equalTo(425));
-        
+        assertThat(checkout.checkout("AAAAAABBCDEEFFFFSTXYZ"), equalTo(507));
     }
 
     // TEST REMOVED DUE TO FAILING DEPLOYMENT REQUESTS
@@ -124,7 +125,3 @@ public class CheckoutSolutionTest {
     }
     
 }
-
-
-
-
