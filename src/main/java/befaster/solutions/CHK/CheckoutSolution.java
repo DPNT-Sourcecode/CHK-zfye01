@@ -26,7 +26,7 @@ public class CheckoutSolution {
 
     // Returns an int[] containing the count of different items
     private int[] getItemCounts(String fixedSkus) throws Exception{
-        int[] itemCounts = new int[5]; // count of each item type (A, B, C, D)
+        int[] itemCounts = new int[6]; // count of each item type (A, B, C, D)
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
         // Iterate over the skuChars to count to number of each item type
         for (char sku : skuChars) {
@@ -84,7 +84,13 @@ public class CheckoutSolution {
         // Handle pricing D
         runningSum += itemCounts[3] * 15; // calculate regular pricing
 
+        // Handle pricing F
+        int runningFCount = itemCounts[5];
+        runningFCount -= runningFCount / 3; // remove as many Fs as there are 3Fs (equivalent of buy 2F get 1F free)
+        runningSum += runningFCount * 10;
+
         return runningSum;
     }
 
 }
+

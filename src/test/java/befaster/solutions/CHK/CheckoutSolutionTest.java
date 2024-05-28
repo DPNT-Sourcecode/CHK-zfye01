@@ -35,7 +35,7 @@ public class CheckoutSolutionTest {
     public void returnsCorrectDiscountOfferPricesPerSKU() {
         assertThat(checkout.checkout("EE"), equalTo(80));
         assertThat(checkout.checkout("EEB"), equalTo(checkout.checkout("EE")));
-        assertThat(checkout.checkout("FF"), equalTo(10));
+        assertThat(checkout.checkout("FF"), equalTo(20));
         assertThat(checkout.checkout("FFF"), equalTo(checkout.checkout("FF")));
     }
 
@@ -70,3 +70,4 @@ public class CheckoutSolutionTest {
     }
     
 }
+
