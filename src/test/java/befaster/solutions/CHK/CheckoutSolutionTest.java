@@ -32,6 +32,22 @@ public class CheckoutSolutionTest {
     public void returnsCorrectBasketPrice() {
         assertThat(checkout.checkout("AAABBCD"), equalTo(210));
     }
+
+    @Test
+    public void handlesLowercaseBasket() {
+        assertThat(checkout.checkout("aaabbcd"), equalTo(checkout.checkout("AAABBCD")));
+    }
+
+    @Test
+    public void handlesEmptyBasketPrice() {
+        assertThat(checkout.checkout(""), equalTo(0));
+    }
+
+    @Test
+    public void rejectsInvalidItemType() {
+        assertThat(checkout.checkout("E"), equalTo(-1));
+    }
     
 }
+
 
