@@ -6,33 +6,19 @@ public class CheckoutSolution {
 
 
     public Integer checkout(String skus) {
-        String fixedSkus = skus.toUpperCase();
+        // Preprocessing
+        String fixedSkus = skus.toUpperCase(); // set all to uppercase
+        fixedSkus.replaceAll("\\s", ""); // remove whitespace
 
+        // Count the items
         int[] itemCounts;
-        
         try {
             itemCounts = getItemCounts(fixedSkus);
-        } catch (Exception e) {
+        } catch (Exception e) { // Catch exception, reveals that an invalid item type was given
             return -1;
         }
 
-        int runningSum = 0;
-
-        // Handle pricing A
-        runningSum += itemCounts[0] / 3 * 130; // calculate special offers
-        runningSum += itemCounts[0] % 3 * 50; // calculate regular pricing
-
-        // Handle pricing B
-        runningSum += itemCounts[1] / 2 * 45; // calculate special offers
-        runningSum += itemCounts[1] % 2 * 30; // calculate regular pricing
-
-        // Handle pricing C
-        runningSum += itemCounts[2] * 20; // calculate regular pricing
-
-        // Handle pricing D
-        runningSum += itemCounts[3] * 15; // calculate regular pricing
-
-        return runningSum;
+        return calculatePriceFromCounts(itemCounts);
     }
 
     // Returns an int[] containing the count of different items
@@ -55,13 +41,36 @@ public class CheckoutSolution {
                 case 'D':
                     itemCounts[3]++;
                     break;
-                default: // invalid item type, immediately return
+                default: // invalid item type, immediately throw exception
                     throw new Exception("Invalid item type");
             }
         }
         return itemCounts;
     }
+
+    // Returns the overall basket price given a set of item counts
+    private int calculatePriceFromCounts(int[] itemCounts) {
+        int runningSum = 0;
+
+        // Handle pricing A
+        runningSum += itemCounts[0] / 3 * 130; // calculate special offers
+        runningSum += itemCounts[0] % 3 * 50; // calculate regular pricing
+
+        // Handle pricing B
+        runningSum += itemCounts[1] / 2 * 45; // calculate special offers
+        runningSum += itemCounts[1] % 2 * 30; // calculate regular pricing
+
+        // Handle pricing C
+        runningSum += itemCounts[2] * 20; // calculate regular pricing
+
+        // Handle pricing D
+        runningSum += itemCounts[3] * 15; // calculate regular pricing
+
+        return runningSum;
+    }
+
 }
+
 
 
 
