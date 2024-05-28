@@ -17,9 +17,9 @@ public class CheckoutSolution {
         System.out.println(fixedSkus);
 
         // Count the items
-        HashMap<Character, Integer> itemCounts;
+        HashMap<Character, Integer> itemCounts = new HashMap<>();
         try {
-            itemCounts = getItemCounts(fixedSkus);
+            getItemCounts(itemCounts, fixedSkus);
         } catch (Exception e) { // Catch exception, reveals that an invalid item type was given
             return -1;
         }
@@ -27,10 +27,8 @@ public class CheckoutSolution {
         return calculatePriceFromCounts(itemCounts);
     }
 
-    // Returns an int[] containing the count of different items
-    private HashMap<Character, Integer> getItemCounts(String fixedSkus) throws Exception{
-        HashMap<Character, Integer> itemCounts =  new HashMap<>();
-
+    // Updates a HashMap containing the count of different items
+    private void getItemCounts(HashMap<Character, Integer> itemCounts, String fixedSkus) throws Exception{
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
         // Iterate over the skuChars to count to number of each item type
         for (char sku : skuChars) {
@@ -47,7 +45,6 @@ public class CheckoutSolution {
                 throw new Exception("Invalid item type");
             }
         }
-        return itemCounts;
     }
 
     private int getCountBySKU(HashMap<Character, Integer> itemCounts, char sku) {
@@ -87,23 +84,31 @@ public class CheckoutSolution {
          */
         
         // Construct a string of the grouped items in order (allows for easy offer grouping in priority order)
+        // Will also zero out the counts for each letter (remainders will be restored after group discount calculated)
         StringBuilder sbSTXYZ = new StringBuilder();
         for (int i = 0; i < getCountBySKU(itemCounts, 'Z'); i++) {
             sbSTXYZ.append('Z');
         }
+        setBySKU(itemCounts, 'Z', 0);
         for (int i = 0; i < getCountBySKU(itemCounts, 'S'); i++) {
             sbSTXYZ.append('S');
         }
+        setBySKU(itemCounts, 'S', 0);
         for (int i = 0; i < getCountBySKU(itemCounts, 'T'); i++) {
             sbSTXYZ.append('T');
         }
+        setBySKU(itemCounts, 'T', 0);
         for (int i = 0; i < getCountBySKU(itemCounts, 'Y'); i++) {
             sbSTXYZ.append('Y');
         }
+        setBySKU(itemCounts, 'Y', 0);
         for (int i = 0; i < getCountBySKU(itemCounts, 'X'); i++) {
             sbSTXYZ.append('X');
         }
-        String groupSTXYZ = sbSTXYZ.toString();
+        setBySKU(itemCounts, 'X', 0);
+        String stringSTXYZ = sbSTXYZ.toString();
+        int groupsSTXYZ = stringSTXYZ.length() / 3; // counts the number of STXYZ groups
+        stringSTXYZ = stringSTXYZ.substring(groupsSTXYZ * 3); // obtain the substring of non-discounted items (i.e. not in a group)
 
         // Handle pricing S
         runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
@@ -218,6 +223,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
