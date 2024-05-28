@@ -139,6 +139,14 @@ public class CheckoutSolution {
         return itemCounts.getOrDefault(sku, 0);
     }
 
+    private void setBySKU(HashMap<Character, Integer> itemCounts, char sku, int amount) {
+        Integer skuCount = itemCounts.get(sku);
+        // Set existing entry if exists
+        if (Objects.nonNull(skuCount)) {
+            itemCounts.put(sku, amount);
+        }
+    }
+
     private void decrementBySKU(HashMap<Character, Integer> itemCounts, char sku) {
         decrementBySKU(itemCounts, sku, 1);
     }
@@ -167,20 +175,23 @@ public class CheckoutSolution {
         // Handle pricing R (savings of 50)
 
         // Handle pricing E (savings of 30)
-        itemCounts[1] -= Math.min(itemCounts[4] / 2, itemCounts[1]); // remove as many Bs as there are 2Es as they become free
-        runningSum += itemCounts[4] * 40; // calculate regular pricing
+        decrementBySKU(itemCounts, 'B', Math.min(getCountBySKU(itemCounts, 'E') / 2, getCountBySKU(itemCounts, 'B')));
+        runningSum += getCountBySKU(itemCounts, 'B') * 40;
+        // itemCounts[1] -= Math.min(itemCounts[4] / 2, itemCounts[1]); // remove as many Bs as there are 2Es as they become free
+        // runningSum += itemCounts[4] * 40; // calculate regular pricing
 
         // Handle pricing N (savings of 15)
 
 
         // HANDLE SKUs WITHOUT CROSS-ITEM OFFERS
 
+
         // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
-        runningSum += itemCounts[0] / 5 * 200; // calculate special offer for 5As
-        itemCounts[0] = itemCounts[0] % 5; // remove 5A units from the count
-        runningSum += itemCounts[0] / 3 * 130; // calculate special offers for 3As
-        itemCounts[0] = itemCounts[0] % 3; // remove 3A units from the count
-        runningSum += itemCounts[0] % 3 * 50; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'A') / 5 * 200; // calculate special offer for 5As
+        itemCounts[0] = getCountBySKU(itemCounts, 'A') % 5; // remove 5A units from the count
+        runningSum += getCountBySKU(itemCounts, 'A') / 3 * 130; // calculate special offers for 3As
+        itemCounts[0] = getCountBySKU(itemCounts, 'A') % 3; // remove 3A units from the count
+        runningSum += getCountBySKU(itemCounts, 'A') % 3 * 50; // calculate regular pricing
 
         // Handle pricing B
         runningSum += itemCounts[1] / 2 * 45; // calculate special offers
@@ -201,4 +212,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
