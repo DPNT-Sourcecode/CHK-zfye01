@@ -80,6 +80,20 @@ public class CheckoutSolution {
 
         // HANDLE SKUs WITH GROUP DISCOUNT OFFERS
 
+        // Handle pricing S
+        runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
+
+        // Handle pricing T
+        runningSum += getCountBySKU(itemCounts, 'T') * 20; // calculate regular pricing
+
+        // Handle pricing X
+        runningSum += getCountBySKU(itemCounts, 'X') * 17; // calculate regular pricing
+
+        // Handle pricing Y
+        runningSum += getCountBySKU(itemCounts, 'Y') * 20; // calculate regular pricing
+
+        // Handle pricing Z
+        runningSum += getCountBySKU(itemCounts, 'Z') * 21; // calculate regular pricing
 
         // HANDLE SKUs WITH CROSS-ITEM OFFERS (i.e. purchasing one type of SKU 1 gives a free SKU 2)
         /*
@@ -161,12 +175,6 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'Q') / 3 * 80; // calculate special offers
         runningSum += getCountBySKU(itemCounts, 'Q') % 3 * 30; // calculate regular pricing
 
-        // Handle pricing S
-        runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
-
-        // Handle pricing T
-        runningSum += getCountBySKU(itemCounts, 'T') * 20; // calculate regular pricing
-
         // Handle pricing U
         decrementBySKU(itemCounts, 'U', getCountBySKU(itemCounts, 'U') / 4); // remove as many Us as there are 4Us (equivalent of buy 3Us get 1U free)
         runningSum += getCountBySKU(itemCounts, 'U') * 40;
@@ -181,19 +189,11 @@ public class CheckoutSolution {
         // Handle pricing W
         runningSum += getCountBySKU(itemCounts, 'W') * 20; // calculate regular pricing
 
-        // Handle pricing X
-        runningSum += getCountBySKU(itemCounts, 'X') * 17; // calculate regular pricing
-
-        // Handle pricing Y
-        runningSum += getCountBySKU(itemCounts, 'Y') * 20; // calculate regular pricing
-
-        // Handle pricing Z
-        runningSum += getCountBySKU(itemCounts, 'Z') * 21; // calculate regular pricing
-
         return runningSum;
     }
 
 }
+
 
 
 

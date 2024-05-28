@@ -79,6 +79,14 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("XXX"), equalTo(45));
         assertThat(checkout.checkout("YYY"), equalTo(45));
         assertThat(checkout.checkout("ZZZ"), equalTo(45));
+        // String[] validItems = {"S", "T", "Y", "X", "Z"};
+        // for (String item1 : validItems) {
+        //     for (String item2 : validItems) {
+        //         for (String item3 : validItems) {
+        //             assertThat(checkout.checkout(item1 + item2 + item3), equalTo(45));
+        //         }
+        //     }
+        // }
     }
 
     @Test
@@ -112,5 +120,6 @@ public class CheckoutSolutionTest {
     }
     
 }
+
 
 
