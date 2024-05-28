@@ -26,7 +26,7 @@ public class CheckoutSolution {
 
     // Returns an int[] containing the count of different items
     private int[] getItemCounts(String fixedSkus) throws Exception{
-        int[] itemCounts = new int[6]; // count of each item type (A, B, C, D)
+        int[] itemCounts = new int[26]; // count of each item type (A, B, C, D)
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
         // Iterate over the skuChars to count to number of each item type
         for (char sku : skuChars) {
@@ -50,6 +50,66 @@ public class CheckoutSolution {
                 case 'F':
                     itemCounts[5]++;
                     break;
+                case 'G':
+                    itemCounts[6]++;
+                    break;
+                case 'H':
+                    itemCounts[7]++;
+                    break;
+                case 'I':
+                    itemCounts[8]++;
+                    break;
+                case 'J':
+                    itemCounts[9]++;
+                    break;
+                case 'K':
+                    itemCounts[10]++;
+                    break;
+                case 'L':
+                    itemCounts[11]++;
+                    break;
+                case 'M':
+                    itemCounts[12]++;
+                    break;
+                case 'N':
+                    itemCounts[13]++;
+                    break;
+                case 'O':
+                    itemCounts[14]++;
+                    break;
+                case 'P':
+                    itemCounts[15]++;
+                    break;
+                case 'Q':
+                    itemCounts[16]++;
+                    break;
+                case 'R':
+                    itemCounts[17]++;
+                    break;
+                case 'S':
+                    itemCounts[18]++;
+                    break;
+                case 'T':
+                    itemCounts[19]++;
+                    break;
+                case 'U':
+                    itemCounts[20]++;
+                    break;
+                case 'V':
+                    itemCounts[21]++;
+                    break;
+                case 'W':
+                    itemCounts[22]++;
+                    break;
+                case 'X':
+                    itemCounts[23]++;
+                    break;
+                case 'Y':
+                    itemCounts[24]++;
+                    break;
+                case 'Z':
+                    itemCounts[25]++;
+                    break;
                 default: // invalid item type, immediately throw exception
                     throw new Exception("Invalid item type");
             }
@@ -66,25 +126,26 @@ public class CheckoutSolution {
          * 3N-1M saves 15
          */
 
-
         int runningSum = 0;
 
-        // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
-        int runningACount = itemCounts[0];
-        runningSum += runningACount / 5 * 200; // calculate special offer for 5As
-        runningACount = runningACount % 5; // remove 5A units from the count
-        runningSum += runningACount / 3 * 130; // calculate special offers for 3As
-        runningACount = runningACount % 3; // remove 3A units from the count
-        runningSum += runningACount % 3 * 50; // calculate regular pricing
-
+        // HANDLE SKUs WITH CROSS-ITEM OFFERS (i.e. purchasing one type of SKU 1 gives a free SKU 2)
         // Handle pricing E (before B, apply 2E discount before 2B discount)
-        int runningBCount = itemCounts[1];
-        runningBCount -= Math.min(itemCounts[4] / 2, runningBCount); // remove as many Bs as there are 2Es as they become free
+        itemCounts[1] -= Math.min(itemCounts[4] / 2, itemCounts[1]); // remove as many Bs as there are 2Es as they become free
         runningSum += itemCounts[4] * 40; // calculate regular pricing
 
+
+        // HANDLE SKUs WITHOUT CROSS-ITEM OFFERS
+
+        // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
+        runningSum += itemCounts[0] / 5 * 200; // calculate special offer for 5As
+        itemCounts[0] = itemCounts[0] % 5; // remove 5A units from the count
+        runningSum += itemCounts[0] / 3 * 130; // calculate special offers for 3As
+        itemCounts[0] = itemCounts[0] % 3; // remove 3A units from the count
+        runningSum += itemCounts[0] % 3 * 50; // calculate regular pricing
+
         // Handle pricing B
-        runningSum += runningBCount / 2 * 45; // calculate special offers
-        runningSum += runningBCount % 2 * 30; // calculate regular pricing
+        runningSum += itemCounts[1] / 2 * 45; // calculate special offers
+        runningSum += itemCounts[1] % 2 * 30; // calculate regular pricing
 
         // Handle pricing C
         runningSum += itemCounts[2] * 20; // calculate regular pricing
@@ -101,5 +162,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
