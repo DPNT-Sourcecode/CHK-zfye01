@@ -176,7 +176,7 @@ public class CheckoutSolution {
 
         // Handle pricing E (savings of 30)
         decrementBySKU(itemCounts, 'B', Math.min(getCountBySKU(itemCounts, 'E') / 2, getCountBySKU(itemCounts, 'B')));
-        runningSum += getCountBySKU(itemCounts, 'B') * 40;
+        runningSum += getCountBySKU(itemCounts, 'E') * 40;
         // itemCounts[1] -= Math.min(itemCounts[4] / 2, itemCounts[1]); // remove as many Bs as there are 2Es as they become free
         // runningSum += itemCounts[4] * 40; // calculate regular pricing
 
@@ -215,6 +215,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
