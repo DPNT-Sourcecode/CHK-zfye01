@@ -192,8 +192,8 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'J') * 60; // calculate regular pricing
 
         // Handle pricing K
-        runningSum += getCountBySKU(itemCounts, 'K') / 2 * 150; // calculate special offers
-        runningSum += getCountBySKU(itemCounts, 'K') % 2 * 80; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'K') / 2 * 120; // calculate special offers
+        runningSum += getCountBySKU(itemCounts, 'K') % 2 * 70; // calculate regular pricing
 
         // Handle pricing L
         runningSum += getCountBySKU(itemCounts, 'L') * 90; // calculate regular pricing
@@ -230,3 +230,4 @@ public class CheckoutSolution {
     }
 
 }
+
