@@ -76,17 +76,19 @@ public class CheckoutSolution {
 
     // Returns the overall basket price given a set of item counts
     private int calculatePriceFromCounts(HashMap<Character, Integer> itemCounts) {
+        int runningSum = 0;
+
+        // HANDLE SKUs WITH GROUP DISCOUNT OFFERS
+
+
+        // HANDLE SKUs WITH CROSS-ITEM OFFERS (i.e. purchasing one type of SKU 1 gives a free SKU 2)
         /*
          * Cross-item offer priority:
          * 3R-1Q saves 50
          * 2E-1B saves 30
          * 3N-1M saves 15
          */
-
-        int runningSum = 0;
-
-        // HANDLE SKUs WITH CROSS-ITEM OFFERS (i.e. purchasing one type of SKU 1 gives a free SKU 2)
-
+        
         // Handle pricing R (savings of 50)
         decrementBySKU(itemCounts, 'Q', Math.min(getCountBySKU(itemCounts, 'R') / 3, getCountBySKU(itemCounts, 'Q'))); // remove as many Qs as there are 3Rs as they become free
         runningSum += getCountBySKU(itemCounts, 'R') * 50; // calculate regular pricing
@@ -192,4 +194,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
