@@ -161,12 +161,21 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'Q') % 3 * 30; // calculate regular pricing
 
         // Handle pricing S
+        runningSum += getCountBySKU(itemCounts, 'S') * 30; // calculate regular pricing
 
         // Handle pricing T
+        runningSum += getCountBySKU(itemCounts, 'T') * 20; // calculate regular pricing
 
         // Handle pricing U
+        decrementBySKU(itemCounts, 'U', getCountBySKU(itemCounts, 'U') / 4); // remove as many Us as there are 4Us (equivalent of buy 3Us get 1U free)
+        runningSum += getCountBySKU(itemCounts, 'U') * 40;
 
-        // Handle pricing V
+        // Handle pricing V, prioritises 3V > 2V > V to benefit the customer
+        runningSum += getCountBySKU(itemCounts, 'V') / 3 * 130; // calculate special offer for 3Vs
+        setBySKU(itemCounts, 'V', getCountBySKU(itemCounts, 'V') % 3); // remove sets of 3V units from the count
+        runningSum += getCountBySKU(itemCounts, 'V') / 2 * 90; // calculate special offers for 2Vs
+        setBySKU(itemCounts, 'V', getCountBySKU(itemCounts, 'V') % 2); // remove sets of 2V units from the count
+        runningSum += getCountBySKU(itemCounts, 'V') * 50; // calculate regular pricing
 
         // Handle pricing W
 
@@ -180,12 +189,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
-
-
-
-
-

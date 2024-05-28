@@ -31,13 +31,13 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("M"), equalTo(15));
         assertThat(checkout.checkout("N"), equalTo(40));
         assertThat(checkout.checkout("O"), equalTo(10));
-        // assertThat(checkout.checkout("P"), equalTo(50));
+        assertThat(checkout.checkout("P"), equalTo(50));
         assertThat(checkout.checkout("Q"), equalTo(30));
         assertThat(checkout.checkout("R"), equalTo(50));
-        // assertThat(checkout.checkout("S"), equalTo(30));
-        // assertThat(checkout.checkout("T"), equalTo(20));
-        // assertThat(checkout.checkout("U"), equalTo(40));
-        // assertThat(checkout.checkout("V"), equalTo(50));
+        assertThat(checkout.checkout("S"), equalTo(30));
+        assertThat(checkout.checkout("T"), equalTo(20));
+        assertThat(checkout.checkout("U"), equalTo(40));
+        assertThat(checkout.checkout("V"), equalTo(50));
         // assertThat(checkout.checkout("W"), equalTo(20));
         // assertThat(checkout.checkout("X"), equalTo(90));
         // assertThat(checkout.checkout("Y"), equalTo(10));
@@ -52,10 +52,10 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("HHHHH"), equalTo(45));
         assertThat(checkout.checkout("HHHHHHHHHH"), equalTo(80));
         assertThat(checkout.checkout("KK"), equalTo(150));
-        // assertThat(checkout.checkout("PPPPP"), equalTo(200));
+        assertThat(checkout.checkout("PPPPP"), equalTo(200));
         assertThat(checkout.checkout("QQQ"), equalTo(80));
-        // assertThat(checkout.checkout("VV"), equalTo(90));
-        // assertThat(checkout.checkout("VVV"), equalTo(130));
+        assertThat(checkout.checkout("VV"), equalTo(90));
+        assertThat(checkout.checkout("VVV"), equalTo(130));
     }
 
     @Test
@@ -68,8 +68,8 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("NNNM"), equalTo(checkout.checkout("NNN")));
         assertThat(checkout.checkout("RRR"), equalTo(150));
         assertThat(checkout.checkout("RRRQ"), equalTo(checkout.checkout("RRR")));
-        // assertThat(checkout.checkout("UU"), equalTo(80));
-        // assertThat(checkout.checkout("UUU"), equalTo(checkout.checkout("UU")));
+        assertThat(checkout.checkout("UUU"), equalTo(120));
+        assertThat(checkout.checkout("UUUU"), equalTo(checkout.checkout("UUU")));
     }
 
     @Test
@@ -103,8 +103,3 @@ public class CheckoutSolutionTest {
     }
     
 }
-
-
-
-
-
