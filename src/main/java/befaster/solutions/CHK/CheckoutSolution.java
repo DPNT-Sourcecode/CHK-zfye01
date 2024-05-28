@@ -188,29 +188,33 @@ public class CheckoutSolution {
 
         // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
         runningSum += getCountBySKU(itemCounts, 'A') / 5 * 200; // calculate special offer for 5As
-        itemCounts[0] = getCountBySKU(itemCounts, 'A') % 5; // remove 5A units from the count
+        // itemCounts[0] = getCountBySKU(itemCounts, 'A') % 5; // remove 5A units from the count
+        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 5);
         runningSum += getCountBySKU(itemCounts, 'A') / 3 * 130; // calculate special offers for 3As
-        itemCounts[0] = getCountBySKU(itemCounts, 'A') % 3; // remove 3A units from the count
+        // itemCounts[0] = getCountBySKU(itemCounts, 'A') % 3; // remove 3A units from the count
+        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 3);
         runningSum += getCountBySKU(itemCounts, 'A') % 3 * 50; // calculate regular pricing
 
         // Handle pricing B
-        runningSum += itemCounts[1] / 2 * 45; // calculate special offers
-        runningSum += itemCounts[1] % 2 * 30; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'B') / 2 * 45; // calculate special offers
+        runningSum += getCountBySKU(itemCounts, 'B') % 2 * 30; // calculate regular pricing
 
         // Handle pricing C
-        runningSum += itemCounts[2] * 20; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'C') * 20; // calculate regular pricing
 
         // Handle pricing D
-        runningSum += itemCounts[3] * 15; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'D') * 15; // calculate regular pricing
 
         // Handle pricing F
-        int runningFCount = itemCounts[5];
-        runningFCount -= runningFCount / 3; // remove as many Fs as there are 3Fs (equivalent of buy 2F get 1F free)
-        runningSum += runningFCount * 10;
+        // int runningFCount = itemCounts[5];
+        // runningFCount -= runningFCount / 3; // remove as many Fs as there are 3Fs (equivalent of buy 2F get 1F free)
+        decrementBySKU(itemCounts, 'F', getCountBySKU(itemCounts, 'F') / 3);
+        runningSum += getCountBySKU(itemCounts, 'F') * 10;
 
         return runningSum;
     }
 
 }
+
 
 
