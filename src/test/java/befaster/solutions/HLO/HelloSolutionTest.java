@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.isEmptyOrNullString;;
 
 public class HelloSolutionTest {
@@ -20,4 +21,10 @@ public class HelloSolutionTest {
     public void returnsValidString() {
         assertThat(hello.hello("X"), not(isEmptyOrNullString()));
     }
+
+    @Test
+    public void returnsHelloWorld() {
+        assertThat(hello.hello("X"), equalTo("Hello, World!"));
+    }
 }
+
