@@ -23,8 +23,7 @@ public class HelloSolutionTest {
     }
 
     @Test
-    public void returnsHelloWorld() {
-        assertThat(hello.hello("X"), equalTo("Hello, World!"));
+    public void returnsHelloFriend() {
+        assertThat(hello.hello("FRIEND"), equalTo("Hello, FRIEND!"));
     }
 }
-

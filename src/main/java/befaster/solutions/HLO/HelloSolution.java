@@ -4,8 +4,9 @@ import befaster.runner.SolutionNotImplementedException;
 
 public class HelloSolution {
     public String hello(String friendName) {
-        return "Hello, World!";
+        StringBuilder sb = new StringBuilder("Hello, ");
+        sb.append(friendName);
+        sb.append("!");
+        return sb.toString();
     }
 }
-
-
