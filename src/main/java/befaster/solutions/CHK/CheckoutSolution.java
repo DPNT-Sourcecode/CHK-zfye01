@@ -7,8 +7,10 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         // Preprocessing
-        String fixedSkus = skus.toUpperCase(); // set all to uppercase
-        fixedSkus = fixedSkus.replaceAll("\\s", ""); // remove whitespace
+
+        // String fixedSkus = skus.toUpperCase(); // set all to uppercase, REMOVED DUE TO FAILING TEST
+
+        String fixedSkus = skus.replaceAll("\\s", ""); // remove whitespace
         System.out.println(fixedSkus);
 
         // Count the items
@@ -71,3 +73,4 @@ public class CheckoutSolution {
     }
 
 }
+

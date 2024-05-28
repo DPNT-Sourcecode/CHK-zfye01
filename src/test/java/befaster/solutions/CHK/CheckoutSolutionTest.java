@@ -34,10 +34,11 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("AAABBCD"), equalTo(210));
     }
 
-    @Test
-    public void handlesLowercaseBasket() {
-        assertThat(checkout.checkout("aaabbcd"), equalTo(checkout.checkout("AAABBCD")));
-    }
+    // TEST REMOVED DUE TO FAILING DEPLOYMENT REQUESTS
+    // @Test
+    // public void handlesLowercaseBasket() {
+    //     assertThat(checkout.checkout("aaabbcd"), equalTo(checkout.checkout("AAABBCD")));
+    // }
 
     @Test
     public void handlesWhitespaceBasket() {
@@ -52,6 +53,8 @@ public class CheckoutSolutionTest {
     @Test
     public void rejectsInvalidItemType() {
         assertThat(checkout.checkout("E"), equalTo(-1));
+        assertThat(checkout.checkout("a"), equalTo(-1));
     }
     
 }
+
