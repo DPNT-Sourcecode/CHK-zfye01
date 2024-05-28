@@ -97,7 +97,7 @@ public class CheckoutSolution {
 
         // Handle pricing N (savings of 15)
         decrementBySKU(itemCounts, 'M', Math.min(getCountBySKU(itemCounts, 'N') / 3, getCountBySKU(itemCounts, 'M'))); // remove as many Ms as there are 3Ns as they become free
-        runningSum += getCountBySKU(itemCounts, 'N') * 50; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'N') * 40; // calculate regular pricing
 
         // HANDLE SKUs WITHOUT CROSS-ITEM OFFERS
 
@@ -123,10 +123,48 @@ public class CheckoutSolution {
         decrementBySKU(itemCounts, 'F', getCountBySKU(itemCounts, 'F') / 3); // remove as many Fs as there are 3Fs (equivalent of buy 2F get 1F free)
         runningSum += getCountBySKU(itemCounts, 'F') * 10;
 
+        // Handle pricing G
+
+        // Handle pricing H
+
+        // Handle pricing I
+
+        // Handle pricing J
+
+        // Handle pricing K
+
+        // Handle pricing L
+
+        // Handle pricing M
+        runningSum += getCountBySKU(itemCounts, 'M') * 15; // calculate regular pricing
+
+        // Handle pricing O
+
+        // Handle pricing P
+
+        // Handle pricing Q
+
+        // Handle pricing S
+
+        // Handle pricing T
+
+        // Handle pricing U
+
+        // Handle pricing V
+
+        // Handle pricing W
+
+        // Handle pricing X
+
+        // Handle pricing Y
+
+        // Handle pricing Z
+
         return runningSum;
     }
 
 }
+
 
 
 
