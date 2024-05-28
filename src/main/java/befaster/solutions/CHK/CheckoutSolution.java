@@ -136,15 +136,19 @@ public class CheckoutSolution {
     }
 
     private int getCountBySKU(HashMap<Character, Integer> itemCounts, char sku) {
-
+        return itemCounts.getOrDefault(sku, 0);
     }
 
     private void decrementBySKU(HashMap<Character, Integer> itemCounts, char sku) {
-        decrementBySKU(itemCounts, sku, 0);
+        decrementBySKU(itemCounts, sku, 1);
     }
 
     private void decrementBySKU(HashMap<Character, Integer> itemCounts, char sku, int amount) {
-
+        Integer skuCount = itemCounts.get(sku);
+        // Decrement existing entry if exists
+        if (Objects.nonNull(skuCount)) {
+            itemCounts.put(sku, skuCount - amount);
+        }
     }
 
     // Returns the overall basket price given a set of item counts
@@ -197,3 +201,4 @@ public class CheckoutSolution {
     }
 
 }
+
