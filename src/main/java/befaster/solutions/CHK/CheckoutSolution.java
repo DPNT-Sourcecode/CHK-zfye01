@@ -1,5 +1,8 @@
 package befaster.solutions.CHK;
 
+import java.util.HashMap;
+import java.util.Objects;
+
 import befaster.runner.SolutionNotImplementedException;
 
 public class CheckoutSolution {
@@ -27,10 +30,24 @@ public class CheckoutSolution {
     // Returns an int[] containing the count of different items
     private int[] getItemCounts(String fixedSkus) throws Exception{
         int[] itemCounts = new int[26]; // count of each item type (A, B, C, D)
+        HashMap<Character, Integer> itemCountsM =  new HashMap<>();
+
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
         // Iterate over the skuChars to count to number of each item type
         for (char sku : skuChars) {
             // Switch statement to increment each item type count or invalid type
+
+            // Accepts any uppercase alphabetical character
+            if (Character.isLetter(sku) && Character.isUpperCase(sku)) {
+                Integer skuCount = itemCountsM.get(sku);
+                // If no entry exists, create one
+                if (Objects.isNull(skuCount)) {
+                    itemCountsM.put(sku, 0);
+                } else  { // Else increment existing entry
+                    itemCountsM.put(sku, skuCount + 1);
+                }
+            }
+
             switch (sku) {
                 case 'A':
                     itemCounts[0]++;
@@ -129,9 +146,14 @@ public class CheckoutSolution {
         int runningSum = 0;
 
         // HANDLE SKUs WITH CROSS-ITEM OFFERS (i.e. purchasing one type of SKU 1 gives a free SKU 2)
-        // Handle pricing E (before B, apply 2E discount before 2B discount)
+
+        // Handle pricing R (savings of 50)
+
+        // Handle pricing E (savings of 30)
         itemCounts[1] -= Math.min(itemCounts[4] / 2, itemCounts[1]); // remove as many Bs as there are 2Es as they become free
         runningSum += itemCounts[4] * 40; // calculate regular pricing
+
+        // Handle pricing N (savings of 15)
 
 
         // HANDLE SKUs WITHOUT CROSS-ITEM OFFERS
@@ -162,6 +184,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
