@@ -17,7 +17,7 @@ public class CheckoutSolution {
         System.out.println(fixedSkus);
 
         // Count the items
-        int[] itemCounts;
+        HashMap<Character, Integer> itemCounts;
         try {
             itemCounts = getItemCounts(fixedSkus);
         } catch (Exception e) { // Catch exception, reveals that an invalid item type was given
@@ -28,114 +28,127 @@ public class CheckoutSolution {
     }
 
     // Returns an int[] containing the count of different items
-    private int[] getItemCounts(String fixedSkus) throws Exception{
-        int[] itemCounts = new int[26]; // count of each item type (A, B, C, D)
-        HashMap<Character, Integer> itemCountsM =  new HashMap<>();
+    private HashMap<Character, Integer> getItemCounts(String fixedSkus) throws Exception{
+        // int[] itemCounts = new int[26]; // count of each item type (A, B, C, D)
+        HashMap<Character, Integer> itemCounts =  new HashMap<>();
 
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
         // Iterate over the skuChars to count to number of each item type
         for (char sku : skuChars) {
-            // Switch statement to increment each item type count or invalid type
-
             // Accepts any uppercase alphabetical character
             if (Character.isLetter(sku) && Character.isUpperCase(sku)) {
-                Integer skuCount = itemCountsM.get(sku);
+                Integer skuCount = itemCounts.get(sku);
                 // If no entry exists, create one
                 if (Objects.isNull(skuCount)) {
-                    itemCountsM.put(sku, 0);
+                    itemCounts.put(sku, 0);
                 } else  { // Else increment existing entry
-                    itemCountsM.put(sku, skuCount + 1);
+                    itemCounts.put(sku, skuCount + 1);
                 }
-            }
-
-            switch (sku) {
-                case 'A':
-                    itemCounts[0]++;
-                    break;
-                case 'B':
-                    itemCounts[1]++;
-                    break;
-                case 'C':
-                    itemCounts[2]++;
-                    break;
-                case 'D':
-                    itemCounts[3]++;
-                    break;
-                case 'E':
-                    itemCounts[4]++;
-                    break;
-                case 'F':
-                    itemCounts[5]++;
-                    break;
-                case 'G':
-                    itemCounts[6]++;
-                    break;
-                case 'H':
-                    itemCounts[7]++;
-                    break;
-                case 'I':
-                    itemCounts[8]++;
-                    break;
-                case 'J':
-                    itemCounts[9]++;
-                    break;
-                case 'K':
-                    itemCounts[10]++;
-                    break;
-                case 'L':
-                    itemCounts[11]++;
-                    break;
-                case 'M':
-                    itemCounts[12]++;
-                    break;
-                case 'N':
-                    itemCounts[13]++;
-                    break;
-                case 'O':
-                    itemCounts[14]++;
-                    break;
-                case 'P':
-                    itemCounts[15]++;
-                    break;
-                case 'Q':
-                    itemCounts[16]++;
-                    break;
-                case 'R':
-                    itemCounts[17]++;
-                    break;
-                case 'S':
-                    itemCounts[18]++;
-                    break;
-                case 'T':
-                    itemCounts[19]++;
-                    break;
-                case 'U':
-                    itemCounts[20]++;
-                    break;
-                case 'V':
-                    itemCounts[21]++;
-                    break;
-                case 'W':
-                    itemCounts[22]++;
-                    break;
-                case 'X':
-                    itemCounts[23]++;
-                    break;
-                case 'Y':
-                    itemCounts[24]++;
-                    break;
-                case 'Z':
-                    itemCounts[25]++;
-                    break;
-                default: // invalid item type, immediately throw exception
-                    throw new Exception("Invalid item type");
+            } else { // Invalid item type, throw exception
+                throw new Exception("Invalid item type");
             }
         }
+
+            // Switch statement to increment each item type count or invalid type
+        //     switch (sku) {
+        //         case 'A':
+        //             itemCounts[0]++;
+        //             break;
+        //         case 'B':
+        //             itemCounts[1]++;
+        //             break;
+        //         case 'C':
+        //             itemCounts[2]++;
+        //             break;
+        //         case 'D':
+        //             itemCounts[3]++;
+        //             break;
+        //         case 'E':
+        //             itemCounts[4]++;
+        //             break;
+        //         case 'F':
+        //             itemCounts[5]++;
+        //             break;
+        //         case 'G':
+        //             itemCounts[6]++;
+        //             break;
+        //         case 'H':
+        //             itemCounts[7]++;
+        //             break;
+        //         case 'I':
+        //             itemCounts[8]++;
+        //             break;
+        //         case 'J':
+        //             itemCounts[9]++;
+        //             break;
+        //         case 'K':
+        //             itemCounts[10]++;
+        //             break;
+        //         case 'L':
+        //             itemCounts[11]++;
+        //             break;
+        //         case 'M':
+        //             itemCounts[12]++;
+        //             break;
+        //         case 'N':
+        //             itemCounts[13]++;
+        //             break;
+        //         case 'O':
+        //             itemCounts[14]++;
+        //             break;
+        //         case 'P':
+        //             itemCounts[15]++;
+        //             break;
+        //         case 'Q':
+        //             itemCounts[16]++;
+        //             break;
+        //         case 'R':
+        //             itemCounts[17]++;
+        //             break;
+        //         case 'S':
+        //             itemCounts[18]++;
+        //             break;
+        //         case 'T':
+        //             itemCounts[19]++;
+        //             break;
+        //         case 'U':
+        //             itemCounts[20]++;
+        //             break;
+        //         case 'V':
+        //             itemCounts[21]++;
+        //             break;
+        //         case 'W':
+        //             itemCounts[22]++;
+        //             break;
+        //         case 'X':
+        //             itemCounts[23]++;
+        //             break;
+        //         case 'Y':
+        //             itemCounts[24]++;
+        //             break;
+        //         case 'Z':
+        //             itemCounts[25]++;
+        //             break;
+        //         default: // invalid item type, immediately throw exception
+        //             throw new Exception("Invalid item type");
+        //     }
         return itemCounts;
     }
 
+    private int getCountBySKU(HashMap<Character, Integer> itemCounts, char sku) {
+
+    }
+
+    private void decrementBySKU(HashMap<Character, Integer> itemCounts, char sku) {
+        decrementBySKU(itemCounts, sku, 0);
+    }
+
+    private void decrementBySKU(HashMap<Character, Integer> itemCounts, char sku, int amount) {
+
+    }
+
     // Returns the overall basket price given a set of item counts
-    private int calculatePriceFromCounts(int[] itemCounts) {
+    private int calculatePriceFromCounts(HashMap<Character, Integer> itemCounts) {
         /*
          * Free cross-item priority:
          * 3R-1Q saves 50
@@ -184,7 +197,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
