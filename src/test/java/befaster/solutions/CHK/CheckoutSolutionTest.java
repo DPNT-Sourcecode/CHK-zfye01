@@ -20,12 +20,20 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("B"), equalTo(30));
         assertThat(checkout.checkout("C"), equalTo(20));
         assertThat(checkout.checkout("D"), equalTo(15));
+        assertThat(checkout.checkout("E"), equalTo(40));
     }
 
     @Test
     public void returnsCorrectOfferPricesPerSKU() {
         assertThat(checkout.checkout("AAA"), equalTo(130));
+        assertThat(checkout.checkout("AAAAA"), equalTo(200));
         assertThat(checkout.checkout("BB"), equalTo(45));
+    }
+
+    @Test
+    public void returnsCorrectDiscountOfferPricesPerSKU() {
+        assertThat(checkout.checkout("EEB"), equalTo(checkout.checkout("EE")));
+        assertThat(checkout.checkout("EEBB"), equalTo(checkout.checkout("EEB")));
     }
 
     @Test
@@ -52,9 +60,10 @@ public class CheckoutSolutionTest {
 
     @Test
     public void rejectsInvalidItemType() {
-        assertThat(checkout.checkout("E"), equalTo(-1));
+        assertThat(checkout.checkout("Z"), equalTo(-1));
         assertThat(checkout.checkout("a"), equalTo(-1));
     }
     
 }
+
 

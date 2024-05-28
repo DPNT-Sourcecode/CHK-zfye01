@@ -26,7 +26,7 @@ public class CheckoutSolution {
 
     // Returns an int[] containing the count of different items
     private int[] getItemCounts(String fixedSkus) throws Exception{
-        int[] itemCounts = new int[4]; // count of each item type (A, B, C, D)
+        int[] itemCounts = new int[5]; // count of each item type (A, B, C, D)
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
         // Iterate over the skuChars to count to number of each item type
         for (char sku : skuChars) {
@@ -43,6 +43,9 @@ public class CheckoutSolution {
                     break;
                 case 'D':
                     itemCounts[3]++;
+                    break;
+                case 'E':
+                    itemCounts[4]++;
                     break;
                 default: // invalid item type, immediately throw exception
                     throw new Exception("Invalid item type");
@@ -69,8 +72,12 @@ public class CheckoutSolution {
         // Handle pricing D
         runningSum += itemCounts[3] * 15; // calculate regular pricing
 
+        // Handle pricing E
+        runningSum += itemCounts[4] * 40; // calculate regular pricing
+
         return runningSum;
     }
 
 }
+
 
