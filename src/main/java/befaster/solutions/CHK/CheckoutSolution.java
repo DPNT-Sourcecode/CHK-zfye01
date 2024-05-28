@@ -40,7 +40,7 @@ public class CheckoutSolution {
                 Integer skuCount = itemCounts.get(sku);
                 // If no entry exists, create one
                 if (Objects.isNull(skuCount)) {
-                    itemCounts.put(sku, 0);
+                    itemCounts.put(sku, 1);
                 } else  { // Else increment existing entry
                     itemCounts.put(sku, skuCount + 1);
                 }
@@ -215,6 +215,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
