@@ -45,18 +45,31 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void returnsCorrectOfferPricesPerSKU() {
+    public void returnsCorrectDiscountOfferPricesPerSKU() {
         assertThat(checkout.checkout("AAA"), equalTo(130));
         assertThat(checkout.checkout("AAAAA"), equalTo(200));
         assertThat(checkout.checkout("BB"), equalTo(45));
+        assertThat(checkout.checkout("HHHHH"), equalTo(45));
+        assertThat(checkout.checkout("HHHHHHHHHH"), equalTo(80));
+        assertThat(checkout.checkout("KK"), equalTo(150));
+        assertThat(checkout.checkout("PPPPP"), equalTo(200));
+        assertThat(checkout.checkout("QQ"), equalTo(80));
+        assertThat(checkout.checkout("VV"), equalTo(90));
+        assertThat(checkout.checkout("VVV"), equalTo(130));
     }
 
     @Test
-    public void returnsCorrectDiscountOfferPricesPerSKU() {
+    public void returnsCorrectFreeOfferPricesPerSKU() {
         assertThat(checkout.checkout("EE"), equalTo(80));
         assertThat(checkout.checkout("EEB"), equalTo(checkout.checkout("EE")));
         assertThat(checkout.checkout("FF"), equalTo(20));
         assertThat(checkout.checkout("FFF"), equalTo(checkout.checkout("FF")));
+        assertThat(checkout.checkout("NNN"), equalTo(120));
+        assertThat(checkout.checkout("NNNM"), equalTo(checkout.checkout("NNN")));
+        assertThat(checkout.checkout("RRR"), equalTo(150));
+        assertThat(checkout.checkout("RRRQ"), equalTo(checkout.checkout("RRR")));
+        assertThat(checkout.checkout("UU"), equalTo(80));
+        assertThat(checkout.checkout("UUU"), equalTo(checkout.checkout("UU")));
     }
 
     @Test
@@ -90,6 +103,7 @@ public class CheckoutSolutionTest {
     }
     
 }
+
 
 
 
