@@ -85,10 +85,25 @@ public class CheckoutSolution {
          * S,T,Y saves 20
          * X saves 17
          */
+        
+        // Construct a string of the grouped items in order (allows for easy offer grouping in priority order)
         StringBuilder sbSTXYZ = new StringBuilder();
         for (int i = 0; i < getCountBySKU(itemCounts, 'Z'); i++) {
             sbSTXYZ.append('Z');
         }
+        for (int i = 0; i < getCountBySKU(itemCounts, 'S'); i++) {
+            sbSTXYZ.append('S');
+        }
+        for (int i = 0; i < getCountBySKU(itemCounts, 'T'); i++) {
+            sbSTXYZ.append('T');
+        }
+        for (int i = 0; i < getCountBySKU(itemCounts, 'Y'); i++) {
+            sbSTXYZ.append('Y');
+        }
+        for (int i = 0; i < getCountBySKU(itemCounts, 'X'); i++) {
+            sbSTXYZ.append('X');
+        }
+        String groupSTXYZ = sbSTXYZ.toString();
 
         // Handle pricing S
         runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
@@ -203,6 +218,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
