@@ -58,7 +58,7 @@ public class CheckoutSolution {
     private int calculatePriceFromCounts(int[] itemCounts) {
         int runningSum = 0;
 
-        // Handle pricing A
+        // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
         int runningACount = itemCounts[0];
         runningSum += runningACount / 5 * 200; // calculate special offer for 5As
         runningACount = runningACount % 5; // remove 5A units from the count
@@ -83,6 +83,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
