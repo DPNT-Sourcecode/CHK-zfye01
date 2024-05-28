@@ -59,8 +59,12 @@ public class CheckoutSolution {
         int runningSum = 0;
 
         // Handle pricing A
-        runningSum += itemCounts[0] / 3 * 130; // calculate special offers
-        runningSum += itemCounts[0] % 3 * 50; // calculate regular pricing
+        int runningACount = itemCounts[0];
+        runningSum += runningACount / 5 * 200; // calculate special offer for 5As
+        runningACount = runningACount % 5; // remove 5A units from the count
+        runningSum += runningACount / 3 * 130; // calculate special offers for 3As
+        runningACount = runningACount % 3; // remove 3A units from the count
+        runningSum += runningACount % 3 * 50; // calculate regular pricing
 
         // Handle pricing B
         runningSum += itemCounts[1] / 2 * 45; // calculate special offers
@@ -79,5 +83,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
