@@ -104,10 +104,10 @@ public class CheckoutSolution {
 
         // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
         runningSum += getCountBySKU(itemCounts, 'A') / 5 * 200; // calculate special offer for 5As
-        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 5); // remove 5A units from the count
+        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 5); // remove sets of 5A units from the count
         runningSum += getCountBySKU(itemCounts, 'A') / 3 * 130; // calculate special offers for 3As
-        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 3); // remove 3A units from the count
-        runningSum += getCountBySKU(itemCounts, 'A') % 3 * 50; // calculate regular pricing
+        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 3); // remove sets of 3A units from the count
+        runningSum += getCountBySKU(itemCounts, 'A') * 50; // calculate regular pricing
 
         // Handle pricing B
         runningSum += getCountBySKU(itemCounts, 'B') / 2 * 45; // calculate special offers
@@ -124,23 +124,37 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'F') * 10;
 
         // Handle pricing G
+        runningSum += getCountBySKU(itemCounts, 'G') * 20; // calculate regular pricing
 
-        // Handle pricing H
+        // Handle pricing H, prioritises 10H > 5H > H to benefit the customer
+        runningSum += getCountBySKU(itemCounts, 'H') / 10 * 80; // calculate special offer for 10Hs
+        setBySKU(itemCounts, 'H', getCountBySKU(itemCounts, 'H') % 10); // remove sets of 10H units from the count
+        runningSum += getCountBySKU(itemCounts, 'H') / 5 * 45; // calculate special offers for 5Hs
+        setBySKU(itemCounts, 'H', getCountBySKU(itemCounts, 'H') % 5); // remove sets of 5H units from the count
+        runningSum += getCountBySKU(itemCounts, 'H') * 10; // calculate regular pricing
 
         // Handle pricing I
+        runningSum += getCountBySKU(itemCounts, 'I') * 35; // calculate regular pricing
 
         // Handle pricing J
+        runningSum += getCountBySKU(itemCounts, 'J') * 60; // calculate regular pricing
 
         // Handle pricing K
+        runningSum += getCountBySKU(itemCounts, 'K') / 2 * 150; // calculate special offers
+        runningSum += getCountBySKU(itemCounts, 'K') % 2 * 80; // calculate regular pricing
 
         // Handle pricing L
+        runningSum += getCountBySKU(itemCounts, 'L') * 90; // calculate regular pricing
 
         // Handle pricing M
         runningSum += getCountBySKU(itemCounts, 'M') * 15; // calculate regular pricing
 
         // Handle pricing O
+        runningSum += getCountBySKU(itemCounts, 'O') * 10; // calculate regular pricing
 
         // Handle pricing P
+        runningSum += getCountBySKU(itemCounts, 'P') / 5 * 200; // calculate special offers
+        runningSum += getCountBySKU(itemCounts, 'P') % 5 * 50; // calculate regular pricing
 
         // Handle pricing Q
         runningSum += getCountBySKU(itemCounts, 'Q') / 3 * 80; // calculate special offers
@@ -166,6 +180,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
