@@ -108,7 +108,14 @@ public class CheckoutSolution {
         setBySKU(itemCounts, 'X', 0);
         String stringSTXYZ = sbSTXYZ.toString();
         int groupsSTXYZ = stringSTXYZ.length() / 3; // counts the number of STXYZ groups
+        runningSum += groupsSTXYZ * 45; // calculate regular pricing
         stringSTXYZ = stringSTXYZ.substring(groupsSTXYZ * 3); // obtain the substring of non-discounted items (i.e. not in a group)
+        // Restore the remainders in stringSTXYZ to their itemcounts
+        try {
+            getItemCounts(itemCounts, stringSTXYZ);
+        } catch (Exception e) { // Catch exception, reveals that an invalid item type was given (shouldn't occur but necessary to catch regardless)
+            return -1;
+        }
 
         // Handle pricing S
         runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
@@ -223,6 +230,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
