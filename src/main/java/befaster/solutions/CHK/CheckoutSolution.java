@@ -66,9 +66,14 @@ public class CheckoutSolution {
         runningACount = runningACount % 3; // remove 3A units from the count
         runningSum += runningACount % 3 * 50; // calculate regular pricing
 
+        // Handle pricing E (before B, apply 2E discount before 2B discount)
+        int runningBCount = itemCounts[1];
+        runningBCount -= Math.min(itemCounts[4] / 2, runningBCount); // remove as many Bs as there are 2Es as they become free
+        runningSum += itemCounts[4] * 40; // calculate regular pricing
+
         // Handle pricing B
-        runningSum += itemCounts[1] / 2 * 45; // calculate special offers
-        runningSum += itemCounts[1] % 2 * 30; // calculate regular pricing
+        runningSum += runningBCount / 2 * 45; // calculate special offers
+        runningSum += runningBCount % 2 * 30; // calculate regular pricing
 
         // Handle pricing C
         runningSum += itemCounts[2] * 20; // calculate regular pricing
@@ -76,13 +81,11 @@ public class CheckoutSolution {
         // Handle pricing D
         runningSum += itemCounts[3] * 15; // calculate regular pricing
 
-        // Handle pricing E
-        runningSum += itemCounts[4] * 40; // calculate regular pricing
-
         return runningSum;
     }
 
 }
+
 
 
 

@@ -33,7 +33,6 @@ public class CheckoutSolutionTest {
     @Test
     public void returnsCorrectDiscountOfferPricesPerSKU() {
         assertThat(checkout.checkout("EEB"), equalTo(checkout.checkout("EE")));
-        assertThat(checkout.checkout("EEBB"), equalTo(checkout.checkout("EEB")));
     }
 
     @Test
@@ -65,5 +64,6 @@ public class CheckoutSolutionTest {
     }
     
 }
+
 
 
