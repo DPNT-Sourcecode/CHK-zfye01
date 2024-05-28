@@ -88,7 +88,7 @@ public class CheckoutSolution {
          * 2E-1B saves 30
          * 3N-1M saves 15
          */
-        
+
         // Handle pricing R (savings of 50)
         decrementBySKU(itemCounts, 'Q', Math.min(getCountBySKU(itemCounts, 'R') / 3, getCountBySKU(itemCounts, 'Q'))); // remove as many Qs as there are 3Rs as they become free
         runningSum += getCountBySKU(itemCounts, 'R') * 50; // calculate regular pricing
@@ -162,7 +162,7 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'Q') % 3 * 30; // calculate regular pricing
 
         // Handle pricing S
-        runningSum += getCountBySKU(itemCounts, 'S') * 30; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
 
         // Handle pricing T
         runningSum += getCountBySKU(itemCounts, 'T') * 20; // calculate regular pricing
@@ -182,17 +182,18 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'W') * 20; // calculate regular pricing
 
         // Handle pricing X
-        runningSum += getCountBySKU(itemCounts, 'X') * 90; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'X') * 17; // calculate regular pricing
 
         // Handle pricing Y
-        runningSum += getCountBySKU(itemCounts, 'Y') * 10; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'Y') * 20; // calculate regular pricing
 
         // Handle pricing Z
-        runningSum += getCountBySKU(itemCounts, 'Z') * 50; // calculate regular pricing
+        runningSum += getCountBySKU(itemCounts, 'Z') * 21; // calculate regular pricing
 
         return runningSum;
     }
 
 }
+
 
 

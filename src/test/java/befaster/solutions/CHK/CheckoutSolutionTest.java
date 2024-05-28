@@ -34,14 +34,14 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("P"), equalTo(50));
         assertThat(checkout.checkout("Q"), equalTo(30));
         assertThat(checkout.checkout("R"), equalTo(50));
-        assertThat(checkout.checkout("S"), equalTo(30));
+        assertThat(checkout.checkout("S"), equalTo(20));
         assertThat(checkout.checkout("T"), equalTo(20));
         assertThat(checkout.checkout("U"), equalTo(40));
         assertThat(checkout.checkout("V"), equalTo(50));
         assertThat(checkout.checkout("W"), equalTo(20));
-        assertThat(checkout.checkout("X"), equalTo(90));
-        assertThat(checkout.checkout("Y"), equalTo(10));
-        assertThat(checkout.checkout("Z"), equalTo(50));
+        assertThat(checkout.checkout("X"), equalTo(17));
+        assertThat(checkout.checkout("Y"), equalTo(20));
+        assertThat(checkout.checkout("Z"), equalTo(21));
     }
 
     @Test
@@ -70,6 +70,15 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("RRRQ"), equalTo(checkout.checkout("RRR")));
         assertThat(checkout.checkout("UUU"), equalTo(120));
         assertThat(checkout.checkout("UUUU"), equalTo(checkout.checkout("UUU")));
+    }
+
+    @Test
+    public void returnsCorrectGroupDiscountPrices() {
+        assertThat(checkout.checkout("SSS"), equalTo(45));
+        assertThat(checkout.checkout("TTT"), equalTo(45));
+        assertThat(checkout.checkout("XXX"), equalTo(45));
+        assertThat(checkout.checkout("YYY"), equalTo(45));
+        assertThat(checkout.checkout("ZZZ"), equalTo(45));
     }
 
     @Test
@@ -103,4 +112,5 @@ public class CheckoutSolutionTest {
     }
     
 }
+
 
