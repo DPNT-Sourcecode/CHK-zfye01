@@ -29,7 +29,6 @@ public class CheckoutSolution {
 
     // Returns an int[] containing the count of different items
     private HashMap<Character, Integer> getItemCounts(String fixedSkus) throws Exception{
-        // int[] itemCounts = new int[26]; // count of each item type (A, B, C, D)
         HashMap<Character, Integer> itemCounts =  new HashMap<>();
 
         char[] skuChars = fixedSkus.toCharArray(); // characters in skus
@@ -48,90 +47,6 @@ public class CheckoutSolution {
                 throw new Exception("Invalid item type");
             }
         }
-
-            // Switch statement to increment each item type count or invalid type
-        //     switch (sku) {
-        //         case 'A':
-        //             itemCounts[0]++;
-        //             break;
-        //         case 'B':
-        //             itemCounts[1]++;
-        //             break;
-        //         case 'C':
-        //             itemCounts[2]++;
-        //             break;
-        //         case 'D':
-        //             itemCounts[3]++;
-        //             break;
-        //         case 'E':
-        //             itemCounts[4]++;
-        //             break;
-        //         case 'F':
-        //             itemCounts[5]++;
-        //             break;
-        //         case 'G':
-        //             itemCounts[6]++;
-        //             break;
-        //         case 'H':
-        //             itemCounts[7]++;
-        //             break;
-        //         case 'I':
-        //             itemCounts[8]++;
-        //             break;
-        //         case 'J':
-        //             itemCounts[9]++;
-        //             break;
-        //         case 'K':
-        //             itemCounts[10]++;
-        //             break;
-        //         case 'L':
-        //             itemCounts[11]++;
-        //             break;
-        //         case 'M':
-        //             itemCounts[12]++;
-        //             break;
-        //         case 'N':
-        //             itemCounts[13]++;
-        //             break;
-        //         case 'O':
-        //             itemCounts[14]++;
-        //             break;
-        //         case 'P':
-        //             itemCounts[15]++;
-        //             break;
-        //         case 'Q':
-        //             itemCounts[16]++;
-        //             break;
-        //         case 'R':
-        //             itemCounts[17]++;
-        //             break;
-        //         case 'S':
-        //             itemCounts[18]++;
-        //             break;
-        //         case 'T':
-        //             itemCounts[19]++;
-        //             break;
-        //         case 'U':
-        //             itemCounts[20]++;
-        //             break;
-        //         case 'V':
-        //             itemCounts[21]++;
-        //             break;
-        //         case 'W':
-        //             itemCounts[22]++;
-        //             break;
-        //         case 'X':
-        //             itemCounts[23]++;
-        //             break;
-        //         case 'Y':
-        //             itemCounts[24]++;
-        //             break;
-        //         case 'Z':
-        //             itemCounts[25]++;
-        //             break;
-        //         default: // invalid item type, immediately throw exception
-        //             throw new Exception("Invalid item type");
-        //     }
         return itemCounts;
     }
 
@@ -173,26 +88,25 @@ public class CheckoutSolution {
         // HANDLE SKUs WITH CROSS-ITEM OFFERS (i.e. purchasing one type of SKU 1 gives a free SKU 2)
 
         // Handle pricing R (savings of 50)
+        decrementBySKU(itemCounts, 'Q', Math.min(getCountBySKU(itemCounts, 'R') / 3, getCountBySKU(itemCounts, 'Q'))); // remove as many Qs as there are 3Rs as they become free
+        runningSum += getCountBySKU(itemCounts, 'R') * 50; // calculate regular pricing
 
         // Handle pricing E (savings of 30)
-        decrementBySKU(itemCounts, 'B', Math.min(getCountBySKU(itemCounts, 'E') / 2, getCountBySKU(itemCounts, 'B')));
-        runningSum += getCountBySKU(itemCounts, 'E') * 40;
-        // itemCounts[1] -= Math.min(itemCounts[4] / 2, itemCounts[1]); // remove as many Bs as there are 2Es as they become free
-        // runningSum += itemCounts[4] * 40; // calculate regular pricing
+        decrementBySKU(itemCounts, 'B', Math.min(getCountBySKU(itemCounts, 'E') / 2, getCountBySKU(itemCounts, 'B'))); // remove as many Bs as there are 2Es as they become free
+        runningSum += getCountBySKU(itemCounts, 'E') * 40; // calculate regular pricing
 
         // Handle pricing N (savings of 15)
-
+        decrementBySKU(itemCounts, 'M', Math.min(getCountBySKU(itemCounts, 'N') / 3, getCountBySKU(itemCounts, 'M'))); // remove as many Ms as there are 3Ns as they become free
+        runningSum += getCountBySKU(itemCounts, 'N') * 50; // calculate regular pricing
 
         // HANDLE SKUs WITHOUT CROSS-ITEM OFFERS
 
 
         // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
         runningSum += getCountBySKU(itemCounts, 'A') / 5 * 200; // calculate special offer for 5As
-        // itemCounts[0] = getCountBySKU(itemCounts, 'A') % 5; // remove 5A units from the count
-        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 5);
+        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 5); // remove 5A units from the count
         runningSum += getCountBySKU(itemCounts, 'A') / 3 * 130; // calculate special offers for 3As
-        // itemCounts[0] = getCountBySKU(itemCounts, 'A') % 3; // remove 3A units from the count
-        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 3);
+        setBySKU(itemCounts, 'A', getCountBySKU(itemCounts, 'A') % 3); // remove 3A units from the count
         runningSum += getCountBySKU(itemCounts, 'A') % 3 * 50; // calculate regular pricing
 
         // Handle pricing B
@@ -206,15 +120,14 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'D') * 15; // calculate regular pricing
 
         // Handle pricing F
-        // int runningFCount = itemCounts[5];
-        // runningFCount -= runningFCount / 3; // remove as many Fs as there are 3Fs (equivalent of buy 2F get 1F free)
-        decrementBySKU(itemCounts, 'F', getCountBySKU(itemCounts, 'F') / 3);
+        decrementBySKU(itemCounts, 'F', getCountBySKU(itemCounts, 'F') / 3); // remove as many Fs as there are 3Fs (equivalent of buy 2F get 1F free)
         runningSum += getCountBySKU(itemCounts, 'F') * 10;
 
         return runningSum;
     }
 
 }
+
 
 
 
