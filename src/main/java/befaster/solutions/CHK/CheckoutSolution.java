@@ -47,6 +47,9 @@ public class CheckoutSolution {
                 case 'E':
                     itemCounts[4]++;
                     break;
+                case 'F':
+                    itemCounts[5]++;
+                    break;
                 default: // invalid item type, immediately throw exception
                     throw new Exception("Invalid item type");
             }
@@ -85,8 +88,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
-

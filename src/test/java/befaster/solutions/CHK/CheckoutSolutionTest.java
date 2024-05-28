@@ -21,6 +21,7 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("C"), equalTo(20));
         assertThat(checkout.checkout("D"), equalTo(15));
         assertThat(checkout.checkout("E"), equalTo(40));
+        assertThat(checkout.checkout("F"), equalTo(10));
     }
 
     @Test
@@ -32,8 +33,10 @@ public class CheckoutSolutionTest {
 
     @Test
     public void returnsCorrectDiscountOfferPricesPerSKU() {
-        assertThat(checkout.checkout("EE"), equalTo(checkout.checkout("EE")));
+        assertThat(checkout.checkout("EE"), equalTo(80));
         assertThat(checkout.checkout("EEB"), equalTo(checkout.checkout("EE")));
+        assertThat(checkout.checkout("FF"), equalTo(10));
+        assertThat(checkout.checkout("FFF"), equalTo(checkout.checkout("FF")));
     }
 
     @Test
@@ -41,6 +44,7 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("AABCD"), equalTo(165));
         assertThat(checkout.checkout("AAABBCD"), equalTo(210));
         assertThat(checkout.checkout("AAAAAABBCDEE"), equalTo(395));
+        assertThat(checkout.checkout("AAAAAABBCDEEFFFF"), equalTo(425));
     }
 
     // TEST REMOVED DUE TO FAILING DEPLOYMENT REQUESTS
@@ -51,7 +55,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void handlesWhitespaceBasket() {
-        assertThat(checkout.checkout("A B C D"), equalTo(checkout.checkout("ABCD")));
+        assertThat(checkout.checkout("A B C D E F"), equalTo(checkout.checkout("ABCDEF")));
     }
 
     @Test
@@ -66,7 +70,3 @@ public class CheckoutSolutionTest {
     }
     
 }
-
-
-
-
