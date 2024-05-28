@@ -59,6 +59,14 @@ public class CheckoutSolution {
 
     // Returns the overall basket price given a set of item counts
     private int calculatePriceFromCounts(int[] itemCounts) {
+        /*
+         * Free cross-item priority:
+         * 3R-1Q saves 50
+         * 2E-1B saves 30
+         * 3N-1M saves 15
+         */
+
+
         int runningSum = 0;
 
         // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
@@ -93,4 +101,5 @@ public class CheckoutSolution {
     }
 
 }
+
 
