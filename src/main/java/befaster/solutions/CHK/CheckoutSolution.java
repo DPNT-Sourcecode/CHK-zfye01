@@ -79,6 +79,16 @@ public class CheckoutSolution {
         int runningSum = 0;
 
         // HANDLE SKUs WITH GROUP DISCOUNT OFFERS
+        /*
+         * STXYZ discount priority
+         * Z saves 21
+         * S,T,Y saves 20
+         * X saves 17
+         */
+        StringBuilder sbSTXYZ = new StringBuilder();
+        for (int i = 0; i < getCountBySKU(itemCounts, 'Z'); i++) {
+            sbSTXYZ.append('Z');
+        }
 
         // Handle pricing S
         runningSum += getCountBySKU(itemCounts, 'S') * 20; // calculate regular pricing
@@ -193,6 +203,7 @@ public class CheckoutSolution {
     }
 
 }
+
 
 
 
