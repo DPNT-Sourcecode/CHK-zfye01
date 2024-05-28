@@ -38,10 +38,10 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("T"), equalTo(20));
         assertThat(checkout.checkout("U"), equalTo(40));
         assertThat(checkout.checkout("V"), equalTo(50));
-        // assertThat(checkout.checkout("W"), equalTo(20));
-        // assertThat(checkout.checkout("X"), equalTo(90));
-        // assertThat(checkout.checkout("Y"), equalTo(10));
-        // assertThat(checkout.checkout("Z"), equalTo(50));
+        assertThat(checkout.checkout("W"), equalTo(20));
+        assertThat(checkout.checkout("X"), equalTo(90));
+        assertThat(checkout.checkout("Y"), equalTo(10));
+        assertThat(checkout.checkout("Z"), equalTo(50));
     }
 
     @Test
@@ -103,3 +103,4 @@ public class CheckoutSolutionTest {
     }
     
 }
+

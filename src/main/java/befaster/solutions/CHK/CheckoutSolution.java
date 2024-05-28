@@ -77,7 +77,7 @@ public class CheckoutSolution {
     // Returns the overall basket price given a set of item counts
     private int calculatePriceFromCounts(HashMap<Character, Integer> itemCounts) {
         /*
-         * Free cross-item priority:
+         * Cross-item offer priority:
          * 3R-1Q saves 50
          * 2E-1B saves 30
          * 3N-1M saves 15
@@ -100,7 +100,6 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'N') * 40; // calculate regular pricing
 
         // HANDLE SKUs WITHOUT CROSS-ITEM OFFERS
-
 
         // Handle pricing A, prioritises 5A > 3A > A to benefit the customer (bigger offer discount first)
         runningSum += getCountBySKU(itemCounts, 'A') / 5 * 200; // calculate special offer for 5As
@@ -178,14 +177,19 @@ public class CheckoutSolution {
         runningSum += getCountBySKU(itemCounts, 'V') * 50; // calculate regular pricing
 
         // Handle pricing W
+        runningSum += getCountBySKU(itemCounts, 'W') * 20; // calculate regular pricing
 
         // Handle pricing X
+        runningSum += getCountBySKU(itemCounts, 'X') * 90; // calculate regular pricing
 
         // Handle pricing Y
+        runningSum += getCountBySKU(itemCounts, 'Y') * 10; // calculate regular pricing
 
         // Handle pricing Z
+        runningSum += getCountBySKU(itemCounts, 'Z') * 50; // calculate regular pricing
 
         return runningSum;
     }
 
 }
+
