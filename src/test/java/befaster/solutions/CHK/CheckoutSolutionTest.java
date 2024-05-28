@@ -65,9 +65,10 @@ public class CheckoutSolutionTest {
 
     @Test
     public void rejectsInvalidItemType() {
-        assertThat(checkout.checkout("Z"), equalTo(-1));
+        assertThat(checkout.checkout("*"), equalTo(-1));
         assertThat(checkout.checkout("a"), equalTo(-1));
     }
     
 }
+
 
